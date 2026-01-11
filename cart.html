@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bag | TechStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-[#fbfbfb] text-slate-900 antialiased">
+
+    <header class="glass sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-slate-900">TECH<span class="text-blue-600">STORE.</span></a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-sm font-bold text-slate-500 hover:text-blue-600">← Back to Shop</a>
+                <div class="p-2 bg-blue-600 text-white rounded-full flex items-center gap-2 px-4 shadow-lg shadow-blue-100">
+                    <span>🛒</span>
+                    <span id="cart-count" class="font-bold">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-black mb-12 tracking-tight">Shopping Bag.</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2">
+                <div id="cart-table-container">
+                    </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 sticky top-28">
+                    <h3 class="text-xl font-bold mb-6">Summary</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between text-slate-500">
+                            <span>Subtotal</span>
+                            <span id="cart-total" class="font-bold text-slate-900">$0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>Shipping</span>
+                            <span class="text-green-600 font-bold uppercase text-xs">Free</span>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex justify-between text-2xl font-black">
+                            <span>Total</span>
+                            <span id="cart-total-final">$0</span>
+                        </div>
+                    </div>
+                    <button onclick="window.open('checkout.html');" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold hover:bg-blue-600 transition shadow-xl">
+                        Checkout Now
+                    </button>
+                    <button onclick="clearCart()" class="w-full mt-4 text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-red-500 transition">
+                        Clear All Items
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

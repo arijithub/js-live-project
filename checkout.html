@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | TechStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        input:focus { border-color: #2563eb !important; }
+    </style>
+</head>
+<body class="bg-[#fbfbfb] text-slate-900 antialiased">
+
+    <header class="glass sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter">TECH<span class="text-blue-600">STORE.</span></a>
+            <a href="cart.html" class="text-sm font-bold text-slate-500 hover:text-blue-600">← Back to Bag</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            
+            <div>
+                <h2 class="text-3xl font-black mb-8 tracking-tight">Shipping Information.</h2>
+                <form id="checkout-form" onsubmit="handleOrder(event)" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[10px] uppercase font-black text-slate-400">First Name</label>
+                            <input type="text" required class="bg-white border border-slate-200 p-4 rounded-2xl outline-none transition-all">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[10px] uppercase font-black text-slate-400">Last Name</label>
+                            <input type="text" required class="bg-white border border-slate-200 p-4 rounded-2xl outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] uppercase font-black text-slate-400">Email Address</label>
+                        <input type="email" required class="bg-white border border-slate-200 p-4 rounded-2xl outline-none transition-all">
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] uppercase font-black text-slate-400">Full Shipping Address</label>
+                        <textarea required rows="3" class="bg-white border border-slate-200 p-4 rounded-2xl outline-none transition-all"></textarea>
+                    </div>
+
+                    <h2 class="text-3xl font-black mt-12 mb-8 tracking-tight">Payment Method.</h2>
+                    <div class="grid grid-cols-1 gap-4">
+                        <label class="relative border border-blue-600 bg-blue-50/50 p-6 rounded-[2rem] cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-4 h-4 rounded-full border-4 border-blue-600 bg-white"></div>
+                                <span class="font-bold">Credit / Debit Card</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-xl">💳</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 text-white py-6 rounded-[2rem] font-black text-lg mt-8 hover:bg-blue-600 transition-all shadow-2xl shadow-blue-200 active:scale-[0.98]">
+                        Complete Order
+                    </button>
+                </form>
+            </div>
+
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm h-fit">
+                <h3 class="text-xl font-bold mb-8">Your Order</h3>
+                <div id="checkout-items" class="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-4 no-scrollbar">
+                    </div>
+
+                <div class="border-t border-slate-100 pt-8 space-y-4">
+                    <div class="flex justify-between text-slate-500">
+                        <span>Subtotal</span>
+                        <span id="checkout-subtotal">$0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-500">
+                        <span>Shipping</span>
+                        <span class="text-green-600 font-bold uppercase text-xs">Free</span>
+                    </div>
+                    <div class="flex justify-between text-2xl font-black pt-4">
+                        <span>Total</span>
+                        <span id="checkout-total">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCheckoutSummary();
+        });
+
+        function handleOrder(e) {
+            e.preventDefault();
+            // Show Success UI
+            document.body.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-screen text-center px-6">
+                    <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mb-8 animate-bounce">✓</div>
+                    <h1 class="text-4xl font-black mb-4">Order Confirmed!</h1>
+                    <p class="text-slate-500 mb-8 max-w-sm">Thank you for shopping with TECHSTORE. We've sent a receipt to your email.</p>
+                    <a href="index.html" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-blue-600 transition">Back to Home</a>
+                </div>
+            `;
+            // Clear the cart in data
+            localStorage.removeItem('cartData');
+        }
+    </script>
+</body>
+</html>
