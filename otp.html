@@ -1,0 +1,57 @@
+<input type="" name="user_otp" id="user_otp" value="" placeholder="Enter OTP" onkeyup="validateotp()">
+
+Your otp is: <span id="display-otp"></span>
+
+
+<script>
+if(localStorage.getItem('is_auth')==='yes'&&localStorage.getItem('is_otp')==='yes'){
+window.location.href='home.html';
+}else{
+
+	if(localStorage.getItem('is_otp')!='yes'&&localStorage.getItem('setuname')==null){
+window.location.href='login.html';
+}
+
+}
+
+
+function generateotp() {
+  // Generate a random number between 0 (inclusive) and 1 (exclusive)
+  // Multiply by 900,000 to get a range from 0 to 899,999.99...
+  // Add 100,000 to shift the range to 100,000 to 999,999.99...
+  // Use Math.floor to get an integer
+  return Math.floor(100000 + Math.random() * 900000);
+}
+
+var otp = generateotp();
+
+document.getElementById('display-otp').innerHTML=otp;
+
+function validateotp(){
+
+
+var user_otp = document.getElementById('user_otp').value;
+
+if(otp==user_otp){
+localStorage.setItem('is_otp','yes');
+localStorage.setItem('is_auth','yes');
+
+	window.location.href='home.html';
+}else{
+
+	if(user_otp.length==6){
+
+		alert('Wrong Otp');
+	}
+	
+}
+}
+
+
+
+
+
+
+
+
+</script>

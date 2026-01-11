@@ -1,0 +1,81 @@
+<form name="loginform" id="login_form" action="" method="post" onsubmit="return loginsubmit(event)">
+<input type="text" name="username" id="username" placeholder="Enter your username"><br>
+<input type="password" name="user_password" id="user_password" placeholder="Enter your password"><br>
+<input type="submit" name="submitbtn" value="submit">
+</form>
+<script>
+if(localStorage.getItem('is_auth')==='yes'&&localStorage.getItem('is_otp')==='yes'){
+window.location.href='home.html';
+}else{
+
+	if(localStorage.getItem('is_otp')!='yes'&&localStorage.getItem('setuname')!=null){
+window.location.href='otp.html';
+}
+
+}
+
+/*
+  function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+   // alert(parseInt(getRandomArbitrary(1, 4)));   */
+
+var userdetails={0:{name:"arijit",password:"1234"},1:{name:"bappa",password:"1234"}};
+
+var is_otp='yes';
+
+var redirpage='';
+
+if(is_otp=='yes'){
+
+redirpage='otp.html';
+}else{
+
+redirpage='home.html';
+}
+
+function loginsubmit(e){
+e.preventDefault();
+var username=document.loginform.username.value;
+var password=document.loginform.user_password.value;
+
+//console.log(userdetails);
+
+var success=true;
+for(let i in userdetails){
+
+var getusername=userdetails[i].name;
+var getpassword=userdetails[i].password;
+
+if(username==getusername&&password==getpassword){
+
+sessionStorage.setItem('setuname',getusername);
+sessionStorage.setItem('setupass',getpassword);
+
+localStorage.setItem('setuname',getusername);
+
+if(is_otp!='yes'){
+
+localStorage.setItem('is_auth','yes');
+}
+
+alert('Login success');
+
+
+window.location.href=redirpage;
+
+return;
+}else{
+success=false;
+
+}
+}
+
+if(!success){
+alert('Login failed');
+}
+}
+//}
+
+</script>
+

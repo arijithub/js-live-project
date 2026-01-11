@@ -1,0 +1,49 @@
+<form name="registerform" id="register_form" action="" method="post" onsubmit="return registersubmit(event)" autocomplete="off">
+<input type="text" name="username" id="username" placeholder="Enter your username" required><br>
+<input type="email" name="useremail" id="useremail" placeholder="Enter your email" required><br>
+<input type="password" name="user_password" id="user_password" placeholder="Enter your password" required><br>
+<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password" required><br>
+<input type="submit" name="submitbtn" value="submit">
+</form>
+<script>
+function registersubmit(e){
+e.preventDefault();
+var username= document.getElementById('username').value;
+var useremail= document.getElementById('useremail').value;
+var password = document.getElementById('user_password').value;
+var confirm_password = document.getElementById('confirm_password').value;
+
+if(password==confirm_password){
+alert('Registered Successful');
+
+var userarray={};
+userarray["name"]=username;
+userarray["email"]=useremail;
+userarray["password"]=password;
+
+
+var userdata=JSON.stringify(userarray);
+
+localStorage.setItem('userdata',userdata);
+
+
+sessionStorage.setItem('setuname',username);
+sessionStorage.setItem('setupass',password);
+
+localStorage.setItem('setuname',username);
+
+
+// for unique users
+localStorage.setItem('is_auth','yes');
+
+
+window.location.href='home.html';
+
+}else{
+alert('Wrong password');
+
+}
+
+}
+</script>
+

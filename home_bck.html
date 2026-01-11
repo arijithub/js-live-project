@@ -1,0 +1,61 @@
+<span id="show-name"></span>
+<button onclick="logout()">Logout</button>
+
+<script>
+var username=sessionStorage.getItem('setuname');
+var userpass=sessionStorage.getItem('setupass');
+
+var is_auth=localStorage.getItem('is_auth');
+
+var is_otp=localStorage.getItem('is_otp');
+
+
+
+if(localStorage.getItem('is_auth')!='yes'&&localStorage.getItem('is_otp')!='yes'){
+window.location.href='login.html';
+}else{
+
+if(localStorage.getItem('is_otp')!='yes'&&localStorage.getItem('setuname')!=null){
+window.location.href='otp.html';
+}
+
+}
+
+
+
+if(username==null){
+username=localStorage.getItem('setuname');
+}
+
+
+
+
+
+// authenticate if user is logged in
+if(username!==null&&userpass!==null){
+
+
+document.getElementById('show-name').innerHTML=username;
+}else{
+
+if(is_auth==null){
+window.location.href='login.html';
+}else{
+document.getElementById('show-name').innerHTML=username;
+}
+}
+
+
+function logout(){
+sessionStorage.removeItem('setuname');
+sessionStorage.removeItem('setupass');
+
+localStorage.removeItem('is_auth');
+localStorage.removeItem('setuname');
+localStorage.removeItem('is_otp');
+window.location.href='login.html';
+}
+
+</script>
+
+
