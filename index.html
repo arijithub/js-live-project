@@ -770,7 +770,7 @@ const myObj = {
   ]
 }
 
-var catnamestr='<div onclick="getallproducts(event);" class="col-lg-3 col-md-4 col-sm-6 pb-1"><a class="text-decoration-none" href=""><div class="cat-item d-flex align-items-center mb-4"><div class="overflow-hidden" style="width: 100px; height: 100px;"><img class="img-fluid" src="assets/img/cat-4.jpg" alt=""></div><div class="flex-fill pl-3"><h6>All</h6><small class="text-body">100 Products</small></div></div></a></div>';
+var catnamestr='<div onclick="getallproducts(event);" class="col-lg-3 col-md-4 col-sm-6 pb-1"><a class="text-decoration-none" href=""><div class="cat-item d-flex align-items-center mb-4"><div class="overflow-hidden" style="width: 100px; height: 100px;"><img class="img-fluid" src="assets/img/cat-all.jpg" alt=""></div><div class="flex-fill pl-3"><h6>All</h6><small class="text-body">100 Products</small></div></div></a></div>';
 for(let i in myObj.category){
 
 catnamestr=catnamestr+'<div onclick="return getcategory('+i+');" class="col-lg-3 col-md-4 col-sm-6 pb-1"><a class="text-decoration-none" href=""><div class="cat-item d-flex align-items-center mb-4"><div class="overflow-hidden" style="width: 100px; height: 100px;"><img class="img-fluid" src="'+myObj.category[i].image+'" alt=""></div><div class="flex-fill pl-3"><h6>'+myObj.category[i].name+'</h6><small class="text-body">100 Products</small></div></div></a></div>';
